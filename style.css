@@ -1,0 +1,50 @@
+html, body {
+    background-color: lightblue;
+    margin: 0;
+    padding: 0;
+}
+
+.topheadder{
+    background-color: blue;
+}
+
+.menu-item{
+    color: wheat;
+    padding: 15px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.brand{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.maincontent {
+    max-width: 600px;
+    margin: auto;
+}
+
+.box {
+    background-color: white;
+    padding: 20px;
+    margin: 30px;
+}
+
+.image{
+    width: 100%;
+}
+
+.button {
+    color: black;
+    background-color: lightblue;
+    padding:  10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.bottomfooter{
+    background-color: aquamarine;
+    padding: 20px;
+    text-align: center;
+}
