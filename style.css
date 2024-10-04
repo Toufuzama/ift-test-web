@@ -6,6 +6,7 @@ html, body {
 
 .topheadder{
     background-color: blue;
+    display: flex;
 }
 
 .menu-item{
