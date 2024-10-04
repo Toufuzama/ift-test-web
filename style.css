@@ -6,7 +6,7 @@ html, body {
 
 .topheadder{
     background-color: blue;
-    display: flex;
+    flex-direction: column;
 }
 
 .menu-item{
@@ -24,6 +24,8 @@ html, body {
 .maincontent {
     max-width: 600px;
     margin: auto;
+    justify-content:center;
+    align-items:center;
 }
 
 .box {
