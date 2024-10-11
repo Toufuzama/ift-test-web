@@ -83,8 +83,10 @@ html, body {
 .center{
     text-align: center;
 }
-.tablecontent{
+.tablecontent, th, td {
     margin-left: auto;
     margin-right: auto;
-    width:25%
+    width:25%;
+    border: 1px solid;
+
 }

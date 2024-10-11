@@ -27,7 +27,7 @@
             <label for="">Phone number list</label>
         </div>
         <input type="text" placeholder="Name" id="inputname">
-        <input type="text" placeholder="Tel" id="inputphone"><button onclick="createlement()">ADD</button><button onclick="">EXPORT</button>
+        <input type="text" placeholder="Tel" id="inputphone"><button onclick="addtable()">ADD</button><button onclick="">EXPORT</button>
     </div>
 
     <div id="parent">
@@ -41,18 +41,21 @@
               <th>Phone</th>
             </tr>
             <tr>
-              <td>Jill</td>
-              <td>Smith</td>
-              <td>50</td>
             </tr>
           </table>
     </div>
 
     <script>
         const username = document.getElementById("username");
-        const Profile = document.getElementById("Profilelimage")
-        const input = document.getElementById("input")
-        const inputimage = document.getElementById("inputimage")
+        const Profile = document.getElementById("Profilelimage");
+        const no_number = document.getElementById("Number");
+        const name = document.getElementById("name");
+        const phone = document.getElementById("phone");
+        const input = document.getElementById("input");
+        const inputimage = document.getElementById("inputimage");
+        const inputname_phone = document.getElementById("inputphone");
+        const inputname_name = document.getElementById("inputname");
+        
     
         function changename(){
              username.textContent = input.value;
@@ -62,10 +65,15 @@
              Profile.style.backgroundImage = "url(" + inputimage.value + ")";
              inputimage.value = "";
         };
-        function a(){
-            const a = document.createlement("p");
-            a.textContent = "HI"
-            document.getElementById("parent").appendChild(a)
+        function addtable(){
+            var table = document.getElementById("tablecontent");
+            var row = table.insertRow(0);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = name.textContent = inputname_name.value;
+            cell2.innerHTML = phone.textContent = inputname_phone.value;
+            inputname_name.value = "";
+            inputname_phone.value = "";
         };
         function saveCSV() {
         const csvContent = phonenumber.map(row => row.join(",")).join("\n"); // Convert array to CSV string
