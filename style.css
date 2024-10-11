@@ -54,3 +54,37 @@ html, body {
     padding: 20px;
     text-align: center;
 }
+.circle{
+    margin-left: auto;
+    margin-right: auto;
+    border: 20%;
+    height: 300px;
+    width: 300px;
+    position: relative;
+    background-color: blue;
+    background-position: center;
+    border-radius: 100%;
+    background-size: cover;
+    background-image: url(https://static01.nyt.com/images/2024/01/05/multimedia/ND-Poke-bowl-bfwm/ND-Poke-bowl-bfwm-superJumbo.jpg);
+}
+.minicircle{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom: 0;
+    right:50px;
+    background-color: blue;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    color: azure;
+    align-items: center;
+}
+.center{
+    text-align: center;
+}
+.tablecontent{
+    margin-left: auto;
+    margin-right: auto;
+    width:25%
+}

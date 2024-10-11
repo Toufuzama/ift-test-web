@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Proflile</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <h1 id="username" class="center">Username</h1>
+    <div class="circle" id="Profilelimage">
+        <div class="minicircle">
+            <p>1</p>
+        </div>
+    </div>
+
+    <div class="center">
+    <label for="">Set username</label>
+    <input type="text" placeholder="Enter" id="input"><button onclick="changename()">Set</button>
+    </div>
+
+    <div class="center">
+    <label for="">Set the profile image URL</label>
+    <input type="text" placeholder="Enter" id="inputimage"><button onclick="changeimage()">Set</button>
+    </div>
+
+    <div class="center">
+        <div class="center">
+            <label for="">Phone number list</label>
+        </div>
+        <input type="text" placeholder="Name" id="inputname">
+        <input type="text" placeholder="Tel" id="inputphone"><button onclick="createlement()">ADD</button><button onclick="">EXPORT</button>
+    </div>
+
+    <div id="parent">
+    </div>
+
+    <div>
+        <table class="tablecontent">
+            <tr>
+              <th>No.</th>
+              <th>Name</th>
+              <th>Phone</th>
+            </tr>
+            <tr>
+              <td>Jill</td>
+              <td>Smith</td>
+              <td>50</td>
+            </tr>
+          </table>
+    </div>
+
+    <script>
+        const username = document.getElementById("username");
+        const Profile = document.getElementById("Profilelimage")
+        const input = document.getElementById("input")
+        const inputimage = document.getElementById("inputimage")
+    
+        function changename(){
+             username.textContent = input.value;
+             input.value = "";
+        };
+        function changeimage(){
+             Profile.style.backgroundImage = "url(" + inputimage.value + ")";
+             inputimage.value = "";
+        };
+        function a(){
+            const a = document.createlement("p");
+            a.textContent = "HI"
+            document.getElementById("parent").appendChild(a)
+        };
+        function saveCSV() {
+        const csvContent = phonenumber.map(row => row.join(",")).join("\n"); // Convert array to CSV string
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "data.csv");
+        link.style.visibility = "hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        };
+    </script>
+</body>
+</html>
