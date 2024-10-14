@@ -12,81 +12,139 @@
         </div>
     </div>
 
-    <div class="center">
-    <label for="">Set username</label>
-    <input type="text" placeholder="Enter" id="input"><button onclick="changename()">Set</button>
-    </div>
-
-    <div class="center">
-    <label for="">Set the profile image URL</label>
-    <input type="text" placeholder="Enter" id="inputimage"><button onclick="changeimage()">Set</button>
-    </div>
-
-    <div class="center">
+    <div class="input-container">
+        <label for="">Set the Username</label>
+        <input type="text" placeholder="Enter Username" id="input"><button onclick="changename()">Set</button>
         <div class="center">
-            <label for="">Phone number list</label>
+        <label for="">Set username</label>
+        <input type="text" placeholder="Enter" id="input"><button onclick="changename()">Set</button>
         </div>
-        <input type="text" placeholder="Name" id="inputname">
-        <input type="text" placeholder="Tel" id="inputphone"><button onclick="addtable()">ADD</button><button onclick="">EXPORT</button>
-    </div>
-
-    <div id="parent">
-    </div>
-
-    <div>
-        <table class="tablecontent">
-            <tr>
-              <th>No.</th>
-              <th>Name</th>
-              <th>Phone</th>
-            </tr>
-            <tr>
-            </tr>
-          </table>
-    </div>
-
-    <script>
-        const username = document.getElementById("username");
-        const Profile = document.getElementById("Profilelimage");
-        const no_number = document.getElementById("Number");
-        const name = document.getElementById("name");
-        const phone = document.getElementById("phone");
-        const input = document.getElementById("input");
-        const inputimage = document.getElementById("inputimage");
-        const inputname_phone = document.getElementById("inputphone");
-        const inputname_name = document.getElementById("inputname");
-        
     
-        function changename(){
-             username.textContent = input.value;
-             input.value = "";
-        };
-        function changeimage(){
-             Profile.style.backgroundImage = "url(" + inputimage.value + ")";
-             inputimage.value = "";
-        };
-        function addtable(){
-            var table = document.getElementById("tablecontent");
-            var row = table.insertRow(0);
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            cell1.innerHTML = name.textContent = inputname_name.value;
-            cell2.innerHTML = phone.textContent = inputname_phone.value;
-            inputname_name.value = "";
-            inputname_phone.value = "";
-        };
-        function saveCSV() {
-        const csvContent = phonenumber.map(row => row.join(",")).join("\n"); // Convert array to CSV string
-        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-        const link = document.createElement("a");
-        const url = URL.createObjectURL(blob);
-        link.setAttribute("href", url);
-        link.setAttribute("download", "data.csv");
-        link.style.visibility = "hidden";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        };
-    </script>
-</body>
-</html>
+        <div class="input-container">
+        <div class="center">
+        <label for="">Set the profile image URL</label>
+        <input type="text" placeholder="Enter Image URL" id="inputimage"><button onclick="changeimage()">Set</button>
+        <input type="text" placeholder="Enter" id="inputimage"><button onclick="changeimage()">Set</button>
+        </div>
+        
+        <h1>Phone Number List</h1>
+        <div class="input-container">
+            <input type="text" id="inputName" placeholder="Name">
+            <input type="text" id="inputPhone" placeholder="Tel">
+            <button onclick="addRow()">ADD</button>
+            <button onclick="exportCSV()">EXPORT</button>
+    
+        <div class="center">
+            <div class="center">
+                <label for="">Phone number list</label>
+            </div>
+            <input type="text" placeholder="Name" id="inputname">
+            <input type="text" placeholder="Tel" id="inputphone"><button onclick="addtable()">ADD</button><button onclick="">EXPORT</button>
+        </div>
+    
+        <div id="parent">
+        </div>
+        <table id="phoneTable">
+            <thead>
+    
+        <div>
+            <table class="tablecontent">
+                <tr>
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                </tr>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Existing rows will be added here -->
+            </tbody>
+        </table>
+              </table>
+        </div>
+    
+        <script>
+            const username = document.getElementById("username");
+            const Profile = document.getElementById("Profilelimage");
+            const no_number = document.getElementById("Number");
+            const name = document.getElementById("name");
+            const phone = document.getElementById("phone");
+            const input = document.getElementById("input");
+            const inputimage = document.getElementById("inputimage");
+            const inputname_phone = document.getElementById("inputphone");
+            const inputname_name = document.getElementById("inputname");
+            
+        
+            function changename(){
+                 username.textContent = input.value;
+                 input.value = "";
+            };
+    
+            function changeimage(){
+                 Profile.style.backgroundImage = "url(" + inputimage.value + ")";
+                 inputimage.value = "";
+            };
+    
+            let rowCount = 0;
+            const phoneNumbers = [];
+            function addRow() {
+                rowCount++;
+                const name = document.getElementById('inputName').value;
+                const phone = document.getElementById('inputPhone').value;
+    
+                if (name && phone) {
+                    const tbody = document.querySelector('#phoneTable tbody');
+                    const row = tbody.insertRow();
+                    row.innerHTML = `
+                        <td>${rowCount}</td>
+                        <td>${name}</td>
+                        <td>${phone}</td>
+                    `;
+    
+                    phoneNumbers.push([rowCount, name, phone]);
+    
+                    document.getElementById('inputName').value = '';
+                    document.getElementById('inputPhone').value = '';
+                }
+            }
+            function exportCSV() {
+                const csvContent = "data:text/csv;charset=utf-8," 
+                    + "No.,Name,Phone Number\n"
+                    + phoneNumbers.map(row => row.join(",")).join("\n");
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "phone_numbers.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            function addtable(){
+                var table = document.getElementById("tablecontent");
+                var row = table.insertRow(0);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                cell1.innerHTML = name.textContent = inputname_name.value;
+                cell2.innerHTML = phone.textContent = inputname_phone.value;
+                inputname_name.value = "";
+                inputname_phone.value = "";
+            };
+            function saveCSV() {
+            const csvContent = phonenumber.map(row => row.join(",")).join("\n"); // Convert array to CSV string
+            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", "data.csv");
+            link.style.visibility = "hidden";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            };
+        </script>
+    </body>
+    </html>
