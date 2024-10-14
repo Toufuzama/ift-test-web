@@ -1,7 +1,5 @@
 html, body {
     background-color: lightblue;
-    margin: 0;
-    padding: 0;
 }
 
 .topheadder{
@@ -78,7 +76,7 @@ html, body {
 }
 body {
     font-family: Arial, sans-serif;
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -90,6 +88,8 @@ h1 {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    width: 500px;
+    text-align: center;
 }
 input {
     flex-grow: 1;
